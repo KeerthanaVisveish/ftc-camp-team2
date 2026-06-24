@@ -9,19 +9,12 @@ public class Teleop extends LinearOpMode {
 
     private BrainSTEMRobot robot;
 
-
     @Override
     public void runOpMode() throws InterruptedException {
 
         robot = new BrainSTEMRobot(this.hardwareMap, this.telemetry, this);
 
         waitForStart();
-
-        while (!opModeIsActive()) {
-
-            telemetry.addData("OpMode Status: ", "Init");
-            telemetry.update();
-        }
 
         while (opModeIsActive()) {
 

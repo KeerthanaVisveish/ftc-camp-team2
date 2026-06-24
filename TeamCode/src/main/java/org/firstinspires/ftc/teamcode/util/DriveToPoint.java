@@ -38,6 +38,7 @@ public class DriveToPoint implements Action {
 
     @Override
     public boolean run(@NonNull TelemetryPacket packet) {
+        drive.updatePoseEstimate();
 
         double worldXPosition = drive.localizer.getPose().position.x;
         double worldYPosition = drive.localizer.getPose().position.y;
@@ -54,10 +55,9 @@ public class DriveToPoint implements Action {
         double forwardOutput = -axialController.update(worldXPosition);
         double lateralOutput = -lateralController.update(worldYPosition);
 
-        double normalizedHeading = normalizeAngle(worldAngle_rad);
-        double normalizedTargetHeading = normalizeAngle(targetHeading);
-        headingController.setTarget(normalizedTargetHeading);
-        double turnPower = -headingController.update(normalizedHeading);
+        double headingError = normalizeAngle(targetHeading - worldAngle_rad);
+        headingController.setTarget(0);
+        double turnPower = headingController.update(headingError);
 
         double sin = Math.sin(worldAngle_rad);
         double cos = Math.cos(worldAngle_rad);
