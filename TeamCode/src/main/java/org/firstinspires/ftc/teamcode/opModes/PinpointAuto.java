@@ -29,10 +29,9 @@ public class PinpointAuto extends LinearOpMode {
         waitForStart();
 
         Actions.runBlocking(
-            new SequentialAction(
-                new DriveToPoint(drive, telemetry, 12, 12, Math.toRadians(90)),
-                new DriveToPoint(drive, telemetry, -12, 12, Math.toRadians(180))
-            )
+                new SequentialAction(
+                        new DriveToPoint(drive, telemetry, 12, 12, Math.toRadians(0))
+                )
         );
     }
 }
