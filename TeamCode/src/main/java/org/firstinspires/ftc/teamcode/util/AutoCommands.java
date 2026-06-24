@@ -29,6 +29,20 @@ public class AutoCommands {
         );
     }
 
+    public Action strafeRobot(double power, double time) {
+        return new SequentialAction(
+                packet -> {
+                    robot.drive.setDTMotorPowers(power, -power, -power, power);
+                    return false;
+                },
+                new SleepAction(time),
+                packet -> {
+                    robot.drive.stop();
+                    return false;
+                }
+        );
+    }
+
     public Action turnRobotRight(double power, double time) {
         return new SequentialAction(
                 packet -> {

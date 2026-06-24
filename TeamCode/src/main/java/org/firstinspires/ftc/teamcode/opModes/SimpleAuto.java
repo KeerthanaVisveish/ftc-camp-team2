@@ -22,8 +22,11 @@ public class SimpleAuto extends LinearOpMode {
 
         Actions.runBlocking(
             new SequentialAction(
-                autoCommands.driveRobot(0.5, 1),
-                autoCommands.turnRobotLeft(0.3, 0.5)
+                autoCommands.driveRobot(0.4, 1.3),
+                autoCommands.strafeRobot(-0.65, 1.25),
+                    autoCommands.driveRobot(.4,2),
+                    autoCommands.strafeRobot(.25,6.5),
+                    autoCommands.driveRobot(.4,1.9)
             )
         );
     }
