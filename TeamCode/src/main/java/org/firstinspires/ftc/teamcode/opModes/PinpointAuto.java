@@ -17,7 +17,7 @@ public class PinpointAuto extends LinearOpMode {
     private BrainSTEMRobot robot;
     private MecanumDrive drive;
     private AutoCommands autoCommands;
-    private Pose2d startPose = new Pose2d(new Vector2d(0, 0), Math.toRadians(0));
+    private Pose2d startPose = new Pose2d(new Vector2d(61.5, -64.5), Math.toRadians(180));
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -30,8 +30,8 @@ public class PinpointAuto extends LinearOpMode {
 
         Actions.runBlocking(
                 new SequentialAction(
-                        new DriveToPoint(drive, telemetry, 12, 12, Math.toRadians(0))
-                )
+                        new DriveToPoint(drive, telemetry, -50, -56, Math.toRadians(180)),
+                )   new DriveToPoint(drive, telemetry, -50, -56, Math.toRadians(180))
         );
     }
 }
