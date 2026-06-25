@@ -30,8 +30,16 @@ public class PinpointAuto extends LinearOpMode {
 
         Actions.runBlocking(
                 new SequentialAction(
-                        new DriveToPoint(drive, telemetry, -50, -56, Math.toRadians(180)),
-                )   new DriveToPoint(drive, telemetry, -50, -56, Math.toRadians(180))
+                        new DriveToPoint(drive, telemetry, -48, -56, Math.toRadians(180)),
+                        new DriveToPoint(drive, telemetry, -15, -53, Math.toRadians(180)),
+                        new DriveToPoint(drive, telemetry, -15, -33, Math.toRadians(180)),
+                        new DriveToPoint(drive, telemetry,  -40, -33, Math.toRadians(180)),
+                        new DriveToPoint(drive, telemetry, -12, -37, Math.toRadians(180)),
+                        new DriveToPoint(drive, telemetry, -12, -20, Math.toRadians(180)),
+                        new DriveToPoint(drive, telemetry, -40, -20, Math.toRadians(180)),
+                        new DriveToPoint(drive, telemetry, -61.5, -64.5, Math.toRadians(180))
+
+                        )
         );
     }
 }
