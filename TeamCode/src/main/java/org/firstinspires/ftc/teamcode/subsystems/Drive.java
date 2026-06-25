@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.subsystems;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
@@ -13,6 +12,8 @@ public class Drive {
     public DcMotorEx backLeft;
     public DcMotorEx frontRight;
     public DcMotorEx backRight;
+
+    public double powerMultiplier = 1.0;
 
     public Drive(HardwareMap hwMap, Telemetry telemetry) {
 
@@ -50,18 +51,12 @@ public class Drive {
     }
 
     public void setDrivePowers(double y, double x, double rx) {
-        frontLeft.setPower(y + x + rx); // 5 + 5
-        backLeft.setPower(y - x + rx); // 5 - 5
-        frontRight.setPower(y - x - rx); // 5 - 5
-        backRight.setPower(y + x - rx); // 5 + 5
-    }
-
-    // takes each dir as 0 (no movement), -1, or 1 (for power)
-    public void tempDrivePowers(int yDir, int xDir, double basePower) {
-        if (xDir == 1) frontLeft.setPower(power);
-        if (x_moved) backLeft.setPower(power);
-//        if (y_moved) frontLeft.setPower(power);
-//        if (y_moved) frontLeft.setPower(power);
-//        if (y_moved) frontLeft.setPower(power);
+        double calcY = y * powerMultiplier;
+        double calcX = x * powerMultiplier;
+        double calcRX = rx * powerMultiplier;
+        frontLeft.setPower(calcY+ calcX+ calcRX); // 5 + 5
+        backLeft.setPower(calcY- calcX+ calcRX); // 5 - 5
+        frontRight.setPower(calcY- calcX- calcRX); // 5 - 5
+        backRight.setPower(calcY+ calcX- calcRX); // 5 + 5
     }
 }

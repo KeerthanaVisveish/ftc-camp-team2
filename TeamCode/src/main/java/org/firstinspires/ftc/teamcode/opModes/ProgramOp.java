@@ -8,16 +8,25 @@ import org.firstinspires.ftc.teamcode.BrainSTEMRobot;
 public class ProgramOp extends LinearOpMode {
 
     private BrainSTEMRobot robot;
+    private long lastRecordTime;
+    private int recordCooldown; // ms
 
     @Override
     public void runOpMode() throws InterruptedException {
 
-//        robot = new BrainSTEMRobot(this.hardwareMap, this.telemetry, this);
-//
-//        waitForStart();
-//
-//        while (opModeIsActive()) {
-//
+        robot = new BrainSTEMRobot(this.hardwareMap, this.telemetry, this);
+
+        waitForStart();
+
+        while (opModeIsActive()) {
+            long now = System.currentTimeMillis();
+            if (now - recordCooldown < lastRecordTime) {
+                telemetry.addData("cooldown", "updating record");
+            }
+            telemetry.addData("now", now);
+            telemetry.addData("last", lastRecordTime);
+            telemetry.update();
+
 //            double y = -gamepad1.left_stick_y;
 //            double x = gamepad1.left_stick_x;
 //            double rx = gamepad1.right_stick_x;
@@ -32,15 +41,6 @@ public class ProgramOp extends LinearOpMode {
 //            telemetry.addData("y move: ", yMotion);
 //            telemetry.addData("x move: ", xMotion);
 //            telemetry.update();
-//        }
+        }
     }
-
-//    private int getPowerMulti(double movement) {
-//        boolean moved = Math.abs(movement) >= 10;
-//
-//        if (!moved) return 0;
-//        if (movement > 0) {
-//            return
-//        }
-//    }
 }
